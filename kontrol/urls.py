@@ -9,8 +9,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/users/', permanent=True)),
-    path('users/', include('users.urls')),
+    path('users/', include('users.urls', namespace='users')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))
